@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
-import Food from './Food';
 import foods from './foods.json';
+import Food from './components/Food';
+import List from './components/List';
 
 class App extends Component {
+  state = {
+    foods: foods,
+  };
+
   render() {
     return (
       <div className="App">
-        <div className="app-container  columns">
-          <div className="app-col column is-half">
-            <h1 className="app-heading title column  is-half">IronNutrition</h1>
-            {foods.map((food) => {
-              return (
-                <Food
-                  image={food.image}
-                  name={food.name}
-                  calories={food.calories}
-                />
-              );
-            })}
+        <div className="app-container">
+          <h1 className="app-heading title column has-text-left">
+            IronNutrition
+          </h1>
+        </div>
+        <div className="app-lists">
+          <div className="app-list">
+            {this.state.foods.map((food, index) => (
+              <Food
+                key={index}
+                index={index}
+                name={food.name}
+                calories={food.calories}
+                image={food.image}
+              />
+            ))}
           </div>
+          <List />
         </div>
       </div>
     );
